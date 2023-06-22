@@ -7,11 +7,14 @@ terraform {
     }
   }
 
-  cloud {
-    organization = "Liatrio-DOB"
-    workspaces {
-      name = "learn-terraform-azure"
-    }
+  backend "azurerm" {
+    resource_group_name  = "myTFResourceGroup"
+    storage_account_name = "terraformbruh"
+    container_name       = "terraform-state"
+    key                  = "test.tfstate"
+    use_oidc             = true
+    subscription_id      = "3e16852e-8399-4c16-b246-16bf46bc3747"
+    tenant_id            = "1b4a4fed-fed8-4823-a8a0-3d5cea83d122"
   }
 
   required_version = ">= 1.1.0"
